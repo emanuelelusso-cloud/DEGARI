@@ -1,8 +1,10 @@
-# if used in testing from inside the lib folder, the first import throws an exception
-try:
-    from lib import ontology_manager as om
-except:
-    import ontology_manager as om
+import sys
+import os
+
+lib_dir = os.path.dirname(__file__)
+sys.path.append(lib_dir)
+
+import ontology_manager as om
 
 
 # creates a table with a row for each scenario,
