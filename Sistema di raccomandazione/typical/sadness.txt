@@ -8,3 +8,7 @@ massacre: 0.931
 euthanasia: 0.927
 depression: 0.925
 grieving: 0.922
+bereavement: 0.922
+fatal: 0.922
+bereaved: 0.920
+devastation: 0.917

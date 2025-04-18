@@ -8,3 +8,7 @@ kill: 0.962
 homicidal: 0.959
 catastrophe: 0.953
 annihilate: 0.953
+murderer: 0.953
+terror: 0.953
+dying: 0.948
+war: 0.942

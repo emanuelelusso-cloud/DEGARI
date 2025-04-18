@@ -1,0 +1,40 @@
+Title: sadness-surprise
+
+Head Concept Name: sadness
+Modifier Concept Name: surprise
+
+head, -happiness
+head, -jubilant
+
+modifier, -anticipation
+
+T(modifier), surprise, 0.93
+T(modifier), explode, 0.906
+T(modifier), flabbergast, 0.906
+T(modifier), explosion, 0.898
+T(modifier), ambush, 0.883
+T(modifier), explosive, 0.883
+T(modifier), eruption, 0.883
+T(modifier), surprisingly, 0.875
+T(modifier), startle, 0.875
+T(modifier), shockingly, 0.875
+T(modifier), frighten, 0.875
+T(modifier), surprised, 0.867
+T(modifier), frightened, 0.867
+T(modifier), surprising, 0.867
+
+T(head), mourning, 0.969
+T(head), heartbreaking, 0.969
+T(head), tragic, 0.961
+T(head), holocaust, 0.953
+T(head), suicidal, 0.941
+T(head), misery, 0.938
+T(head), massacre, 0.931
+T(head), euthanasia, 0.927
+T(head), depression, 0.925
+T(head), grieving, 0.922
+T(head), bereavement, 0.922
+T(head), fatal, 0.922
+T(head), bereaved, 0.92
+T(head), devastation, 0.917
+

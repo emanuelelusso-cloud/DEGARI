@@ -18,8 +18,8 @@ T(modifier), hope, 0.773
 T(modifier), quest, 0.766
 T(modifier), countdown, 0.75
 T(modifier), start, 0.75
+T(modifier), anticipatory, 0.75
 T(modifier), adventure, 0.75
-T(modifier), expectance, 0.75
 
 T(head), outraged, 0.964
 T(head), brutality, 0.959
@@ -31,11 +31,8 @@ T(head), infuriated, 0.938
 T(head), furious, 0.929
 T(head), furiously, 0.927
 T(head), enraged, 0.927
+T(head), screwyou, 0.924
 T(head), murderer, 0.922
 T(head), fury, 0.922
 T(head), execution, 0.917
-T(head), angered, 0.916
 
-
-Result: {"anticipation": 0.859, "outraged": 0.964, "brutality": 0.959, "hatred": 0.953, "hateful": 0.94, "terrorize": 0.939, "violently": 0.938, "infuriated": 0.938, "furious": 0.929, "furiously": 0.927, "enraged": 0.927, "murderer": 0.922, "fury": 0.922, "execution": 0.917, "@scenario_probability": 5.135855590209746e-09}
-Scenario: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 5.135855590209746e-09]

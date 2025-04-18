@@ -10,5 +10,5 @@ hope: 0.773
 quest: 0.766
 countdown: 0.750
 start: 0.750
+anticipatory: 0.750
 adventure: 0.750
-expectance: 0.750

@@ -1,0 +1,41 @@
+Title: surprise-trust
+
+Head Concept Name: surprise
+Modifier Concept Name: trust
+
+head, -anticipation
+
+modifier, -cannibalism
+modifier, -molestation
+modifier, -rape
+
+T(modifier), truthfulness, 0.906
+T(modifier), trusted, 0.883
+T(modifier), trustworthy, 0.867
+T(modifier), honor, 0.844
+T(modifier), honesty, 0.844
+T(modifier), honest, 0.844
+T(modifier), truth, 0.844
+T(modifier), truthful, 0.836
+T(modifier), trusting, 0.836
+T(modifier), brotherhood, 0.82
+T(modifier), entrust, 0.812
+T(modifier), committed, 0.805
+T(modifier), loyalty, 0.805
+T(modifier), integrity, 0.805
+
+T(head), surprise, 0.93
+T(head), explode, 0.906
+T(head), flabbergast, 0.906
+T(head), explosion, 0.898
+T(head), ambush, 0.883
+T(head), explosive, 0.883
+T(head), eruption, 0.883
+T(head), surprisingly, 0.875
+T(head), startle, 0.875
+T(head), shockingly, 0.875
+T(head), frighten, 0.875
+T(head), surprised, 0.867
+T(head), frightened, 0.867
+T(head), surprising, 0.867
+

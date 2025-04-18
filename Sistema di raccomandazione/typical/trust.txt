@@ -8,3 +8,7 @@ truth: 0.844
 truthful: 0.836
 trusting: 0.836
 brotherhood: 0.820
+entrust: 0.812
+committed: 0.805
+loyalty: 0.805
+integrity: 0.805

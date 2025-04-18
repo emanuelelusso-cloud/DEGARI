@@ -8,3 +8,7 @@ eruption: 0.883
 surprisingly: 0.875
 startle: 0.875
 shockingly: 0.875
+frighten: 0.875
+surprised: 0.867
+frightened: 0.867
+surprising: 0.867

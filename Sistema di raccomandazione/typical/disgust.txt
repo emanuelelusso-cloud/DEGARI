@@ -8,3 +8,7 @@ cannibal: 0.898
 rot: 0.891
 corpse: 0.883
 massacre: 0.883
+excrement: 0.883
+barf: 0.875
+slaughter: 0.875
+slaughterhouse: 0.867
