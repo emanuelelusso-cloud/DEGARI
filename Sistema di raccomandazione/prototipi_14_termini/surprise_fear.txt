@@ -36,3 +36,6 @@ T(head), surprised, 0.867
 T(head), frightened, 0.867
 T(head), surprising, 0.867
 
+
+Result: {"torture": 0.984, "terrorist": 0.972, "terrorists": 0.969, "horrific": 0.969, "terrorism": 0.969, "suicidebombing": 0.967, "kill": 0.962, "homicidal": 0.959, "catastrophe": 0.953, "annihilate": 0.953, "murderer": 0.953, "terror": 0.953, "dying": 0.948, "surprise": 0.93, "@scenario_probability": 2.7148895692839684e-12}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2.7148895692839684e-12]

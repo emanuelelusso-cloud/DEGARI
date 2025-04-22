@@ -36,3 +36,6 @@ T(head), surprised, 0.867
 T(head), frightened, 0.867
 T(head), surprising, 0.867
 
+
+Result: {"outraged": 0.964, "brutality": 0.959, "hatred": 0.953, "hateful": 0.94, "terrorize": 0.939, "violently": 0.938, "infuriated": 0.938, "furious": 0.929, "furiously": 0.927, "enraged": 0.927, "screwyou": 0.924, "murderer": 0.922, "fury": 0.922, "surprise": 0.93, "@scenario_probability": 2.74578254584156e-12}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2.74578254584156e-12]

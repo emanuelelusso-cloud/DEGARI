@@ -36,3 +36,6 @@ T(head), awesomeness, 0.926
 T(head), joy, 0.924
 T(head), joyous, 0.922
 
+
+Result: {"torture": 0.984, "terrorist": 0.972, "terrorists": 0.969, "horrific": 0.969, "terrorism": 0.969, "suicidebombing": 0.967, "kill": 0.962, "homicidal": 0.959, "happiest": 0.986, "happiness": 0.984, "bliss": 0.971, "celebrating": 0.97, "jubilant": 0.969, "ecstatic": 0.954, "@scenario_probability": 4.400371347640708e-16}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 4.400371347640708e-16]

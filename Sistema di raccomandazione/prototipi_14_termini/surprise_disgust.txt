@@ -37,3 +37,6 @@ T(head), surprised, 0.867
 T(head), frightened, 0.867
 T(head), surprising, 0.867
 
+
+Result: {"cannibalism": 0.953, "mutilation": 0.93, "molestation": 0.914, "incest": 0.914, "rape": 0.906, "gonorrhea": 0.906, "cannibal": 0.898, "rot": 0.891, "surprise": 0.93, "explode": 0.906, "flabbergast": 0.906, "explosion": 0.898, "explosive": 0.883, "eruption": 0.883, "@scenario_probability": 5.813341732490351e-12}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 5.813341732490351e-12]

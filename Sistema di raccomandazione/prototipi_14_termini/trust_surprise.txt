@@ -39,3 +39,6 @@ T(head), committed, 0.805
 T(head), loyalty, 0.805
 T(head), integrity, 0.805
 
+
+Result: {"surprise": 0.93, "explode": 0.906, "flabbergast": 0.906, "explosion": 0.898, "ambush": 0.883, "explosive": 0.883, "eruption": 0.883, "surprisingly": 0.875, "startle": 0.875, "shockingly": 0.875, "frighten": 0.875, "truthfulness": 0.906, "trusted": 0.883, "trustworthy": 0.867, "@scenario_probability": 1.804318503958356e-10}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.804318503958356e-10]

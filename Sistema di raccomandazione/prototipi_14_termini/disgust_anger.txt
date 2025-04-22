@@ -36,3 +36,6 @@ T(head), barf, 0.875
 T(head), slaughter, 0.875
 T(head), slaughterhouse, 0.867
 
+
+Result: {"outraged": 0.964, "brutality": 0.959, "hatred": 0.953, "hateful": 0.94, "terrorize": 0.939, "violently": 0.938, "infuriated": 0.938, "furious": 0.929, "furiously": 0.927, "enraged": 0.927, "screwyou": 0.924, "murderer": 0.922, "cannibalism": 0.953, "mutilation": 0.93, "@scenario_probability": 6.456881480341261e-13}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6.456881480341261e-13]

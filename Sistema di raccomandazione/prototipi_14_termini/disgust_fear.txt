@@ -36,3 +36,6 @@ T(head), barf, 0.875
 T(head), slaughter, 0.875
 T(head), slaughterhouse, 0.867
 
+
+Result: {"torture": 0.984, "terrorist": 0.972, "terrorists": 0.969, "horrific": 0.969, "terrorism": 0.969, "suicidebombing": 0.967, "kill": 0.962, "homicidal": 0.959, "catastrophe": 0.953, "annihilate": 0.953, "murderer": 0.953, "terror": 0.953, "dying": 0.948, "cannibalism": 0.953, "@scenario_probability": 5.680155871375749e-13}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5.680155871375749e-13]

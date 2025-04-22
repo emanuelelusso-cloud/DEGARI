@@ -39,3 +39,6 @@ T(head), committed, 0.805
 T(head), loyalty, 0.805
 T(head), integrity, 0.805
 
+
+Result: {"anticipation": 0.859, "excited": 0.859, "excitement": 0.82, "anticipate": 0.82, "truthfulness": 0.906, "trusted": 0.883, "trustworthy": 0.867, "honor": 0.844, "honesty": 0.844, "honest": 0.844, "truth": 0.844, "truthful": 0.836, "trusting": 0.836, "brotherhood": 0.82, "@scenario_probability": 5.104604686739462e-09}
+Scenario: [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 5.104604686739462e-09]

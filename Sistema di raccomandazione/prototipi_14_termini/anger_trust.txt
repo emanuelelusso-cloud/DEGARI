@@ -38,3 +38,6 @@ T(head), murderer, 0.922
 T(head), fury, 0.922
 T(head), execution, 0.917
 
+
+Result: {"truthfulness": 0.906, "outraged": 0.964, "brutality": 0.959, "hatred": 0.953, "hateful": 0.94, "terrorize": 0.939, "violently": 0.938, "infuriated": 0.938, "furious": 0.929, "furiously": 0.927, "enraged": 0.927, "screwyou": 0.924, "murderer": 0.922, "fury": 0.922, "@scenario_probability": 2.0065996431658238e-10}
+Scenario: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2.0065996431658238e-10]

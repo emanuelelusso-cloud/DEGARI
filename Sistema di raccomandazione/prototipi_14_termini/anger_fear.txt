@@ -35,3 +35,6 @@ T(head), murderer, 0.922
 T(head), fury, 0.922
 T(head), execution, 0.917
 
+
+Result: {"torture": 0.984, "terrorist": 0.972, "terrorists": 0.969, "horrific": 0.969, "terrorism": 0.969, "suicidebombing": 0.967, "kill": 0.962, "homicidal": 0.959, "annihilate": 0.953, "murderer": 0.953, "terror": 0.953, "outraged": 0.964, "brutality": 0.959, "hatred": 0.953, "@scenario_probability": 1.7143469138149839e-15}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.7143469138149839e-15]

@@ -37,3 +37,6 @@ T(head), surprised, 0.867
 T(head), frightened, 0.867
 T(head), surprising, 0.867
 
+
+Result: {"happiest": 0.986, "happiness": 0.984, "bliss": 0.971, "celebrating": 0.97, "jubilant": 0.969, "ecstatic": 0.954, "elation": 0.944, "beaming": 0.938, "bestdayever": 0.938, "loveee": 0.932, "celebratio": 0.929, "awesomeness": 0.926, "joy": 0.924, "surprise": 0.93, "@scenario_probability": 3.1261756426027385e-12}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3.1261756426027385e-12]

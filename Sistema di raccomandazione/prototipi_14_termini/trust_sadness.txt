@@ -40,3 +40,6 @@ T(head), committed, 0.805
 T(head), loyalty, 0.805
 T(head), integrity, 0.805
 
+
+Result: {"mourning": 0.969, "heartbreaking": 0.969, "tragic": 0.961, "holocaust": 0.953, "suicidal": 0.941, "misery": 0.938, "massacre": 0.931, "euthanasia": 0.927, "depression": 0.925, "grieving": 0.922, "bereavement": 0.922, "fatal": 0.922, "bereaved": 0.92, "truthfulness": 0.906, "@scenario_probability": 2.0434881015298666e-10}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2.0434881015298666e-10]

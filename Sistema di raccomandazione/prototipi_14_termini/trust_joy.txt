@@ -39,3 +39,6 @@ T(head), committed, 0.805
 T(head), loyalty, 0.805
 T(head), integrity, 0.805
 
+
+Result: {"happiest": 0.986, "happiness": 0.984, "bliss": 0.971, "celebrating": 0.97, "jubilant": 0.969, "ecstatic": 0.954, "elation": 0.944, "beaming": 0.938, "bestdayever": 0.938, "loveee": 0.932, "celebratio": 0.929, "awesomeness": 0.926, "joy": 0.924, "truthfulness": 0.906, "@scenario_probability": 2.2845883911749192e-10}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2.2845883911749192e-10]

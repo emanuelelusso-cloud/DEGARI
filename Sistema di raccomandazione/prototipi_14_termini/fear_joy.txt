@@ -36,3 +36,6 @@ T(head), terror, 0.953
 T(head), dying, 0.948
 T(head), war, 0.942
 
+
+Result: {"happiest": 0.986, "happiness": 0.984, "bliss": 0.971, "celebrating": 0.97, "jubilant": 0.969, "ecstatic": 0.954, "torture": 0.984, "terrorist": 0.972, "terrorists": 0.969, "horrific": 0.969, "terrorism": 0.969, "suicidebombing": 0.967, "kill": 0.962, "homicidal": 0.959, "@scenario_probability": 4.4003713476407046e-16}
+Scenario: [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 4.4003713476407046e-16]

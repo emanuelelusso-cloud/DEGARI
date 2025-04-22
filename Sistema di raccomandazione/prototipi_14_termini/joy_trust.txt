@@ -39,3 +39,6 @@ T(head), awesomeness, 0.926
 T(head), joy, 0.924
 T(head), joyous, 0.922
 
+
+Result: {"truthfulness": 0.906, "happiest": 0.986, "happiness": 0.984, "bliss": 0.971, "celebrating": 0.97, "jubilant": 0.969, "ecstatic": 0.954, "elation": 0.944, "beaming": 0.938, "bestdayever": 0.938, "loveee": 0.932, "celebratio": 0.929, "awesomeness": 0.926, "joy": 0.924, "@scenario_probability": 2.28458839117492e-10}
+Scenario: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 2.28458839117492e-10]

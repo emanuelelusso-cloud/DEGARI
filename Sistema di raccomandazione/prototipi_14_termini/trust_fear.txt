@@ -38,3 +38,6 @@ T(head), committed, 0.805
 T(head), loyalty, 0.805
 T(head), integrity, 0.805
 
+
+Result: {"torture": 0.984, "terrorist": 0.972, "terrorists": 0.969, "horrific": 0.969, "terrorism": 0.969, "suicidebombing": 0.967, "kill": 0.962, "homicidal": 0.959, "catastrophe": 0.953, "annihilate": 0.953, "murderer": 0.953, "terror": 0.953, "dying": 0.948, "truthfulness": 0.906, "@scenario_probability": 1.9840232611319746e-10}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.9840232611319746e-10]

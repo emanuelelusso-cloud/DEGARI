@@ -37,3 +37,6 @@ T(head), barf, 0.875
 T(head), slaughter, 0.875
 T(head), slaughterhouse, 0.867
 
+
+Result: {"surprise": 0.93, "explode": 0.906, "flabbergast": 0.906, "explosion": 0.898, "cannibalism": 0.953, "mutilation": 0.93, "molestation": 0.914, "incest": 0.914, "rape": 0.906, "gonorrhea": 0.906, "cannibal": 0.898, "rot": 0.891, "massacre": 0.883, "excrement": 0.883, "@scenario_probability": 5.8133417324903496e-12}
+Scenario: [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 5.8133417324903496e-12]

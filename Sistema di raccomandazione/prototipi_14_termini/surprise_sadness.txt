@@ -38,3 +38,6 @@ T(head), surprised, 0.867
 T(head), frightened, 0.867
 T(head), surprising, 0.867
 
+
+Result: {"mourning": 0.969, "heartbreaking": 0.969, "tragic": 0.961, "holocaust": 0.953, "suicidal": 0.941, "misery": 0.938, "massacre": 0.931, "euthanasia": 0.927, "depression": 0.925, "grieving": 0.922, "bereavement": 0.922, "fatal": 0.922, "bereaved": 0.92, "surprise": 0.93, "@scenario_probability": 2.7962598223944416e-12}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2.7962598223944416e-12]

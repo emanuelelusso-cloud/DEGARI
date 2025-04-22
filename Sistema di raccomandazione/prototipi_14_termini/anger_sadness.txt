@@ -37,3 +37,6 @@ T(head), murderer, 0.922
 T(head), fury, 0.922
 T(head), execution, 0.917
 
+
+Result: {"mourning": 0.969, "heartbreaking": 0.969, "tragic": 0.961, "holocaust": 0.953, "suicidal": 0.941, "misery": 0.938, "massacre": 0.931, "outraged": 0.964, "brutality": 0.959, "hatred": 0.953, "hateful": 0.94, "terrorize": 0.939, "violently": 0.938, "infuriated": 0.938, "@scenario_probability": 1.2111965343204578e-14}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1.2111965343204578e-14]

@@ -37,3 +37,6 @@ T(head), fatal, 0.922
 T(head), bereaved, 0.92
 T(head), devastation, 0.917
 
+
+Result: {"torture": 0.984, "terrorist": 0.972, "terrorists": 0.969, "horrific": 0.969, "terrorism": 0.969, "suicidebombing": 0.967, "kill": 0.962, "homicidal": 0.959, "murderer": 0.953, "terror": 0.953, "mourning": 0.969, "heartbreaking": 0.969, "tragic": 0.961, "holocaust": 0.953, "@scenario_probability": 1.7589696555159262e-15}
+Scenario: [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.7589696555159262e-15]

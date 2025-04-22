@@ -36,3 +36,6 @@ T(head), awesomeness, 0.926
 T(head), joy, 0.924
 T(head), joyous, 0.922
 
+
+Result: {"outraged": 0.964, "brutality": 0.959, "hatred": 0.953, "hateful": 0.94, "terrorize": 0.939, "happiest": 0.986, "happiness": 0.984, "bliss": 0.971, "celebrating": 0.97, "jubilant": 0.969, "ecstatic": 0.954, "elation": 0.944, "beaming": 0.938, "bestdayever": 0.938, "@scenario_probability": 6.450157242856621e-15}
+Scenario: [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 6.450157242856621e-15]
