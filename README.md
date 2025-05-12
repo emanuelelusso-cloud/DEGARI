@@ -2,6 +2,7 @@
 
 A Python tool for dynamic generation of knowledge in Description Logics of 
 Typicality tested in the contexts of RaiPlay, WikiArt Emotions and ArsMeteo
+
 ------------------------------------------------------------------------------------------
 
 ## Module 1 - Generation of prototypes
@@ -71,6 +72,8 @@ Generated file will contain all the properties of prototypes of the two starting
 		Example: python3 cocos.py prototipi/joy_fear
 
 - At the end of its execution, the tool CoCoS writes the prototypes of the novel emotion in the suitable file
+
+- Note: to run the reasoning process, you need Java to be installed on your system. If you get an "Unexpected error during reasoning", please check your java installation.
 
 ------------------------------------------------------------------------------------------
 
