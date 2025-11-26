@@ -128,6 +128,8 @@ class OntologyManager:
         try:
             with self.onto:
                 sync_reasoner(self.my_world, debug = 0)
+        except OwlReadyInconsistentOntologyError:
+            return False
         except subprocess.CalledProcessError as inst:
             return False
         except Exception as e:
