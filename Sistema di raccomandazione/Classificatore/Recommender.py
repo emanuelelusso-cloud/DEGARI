@@ -108,7 +108,7 @@ def elaboraGraduatoria(prop_list, not_prop_list = []) :
             if contains_word(istanza[0], artwork):
                 i+=1
                 print("\t" + istanza[0] + istanza[1] + "\n")
-                f = open("recommendations.tsv", "a")
+                f = open("recommendations.tsv", "a", encoding="utf-8", errors="replace")
                 f.write(istanza[0].replace("\t", " ") + "\t" + category + "\n")
                 f.close()
     if i == 0 :
@@ -116,7 +116,7 @@ def elaboraGraduatoria(prop_list, not_prop_list = []) :
     else:
         perc = (100*i)/sum
         print("Classified "+str(i)+" of "+str(sum)+" contents ("+str(perc)+"%)")
-        f = open("resume.tsv", "a")
+        f = open("resume.tsv", "a", encoding="utf-8", errors="replace")
         f.write(category.replace("\t", " ") + "\t" + str(i) + "\n")
         f.close()
 
