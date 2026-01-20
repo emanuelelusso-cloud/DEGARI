@@ -45,12 +45,16 @@ def isAdverb(word):
 
 
 def insertArtworkInDict(instance, dict, identify, instDescr):
-
     arttwork = instance[identify]
 
     # Rimuovo caratteri non ammessi nella creazione di un file dal nome dell'artwork
-    for char in chars_not_allowed_in_filename:
-        arttwork = arttwork.replace(char, "")
+    if isinstance(arttwork, list):
+        for i in range(len(arttwork)):
+            for char in chars_not_allowed_in_filename:
+                arttwork[i] = arttwork[i].replace(char, "")
+    else:
+        for char in chars_not_allowed_in_filename:
+            arttwork = arttwork.replace(char, "")
 
     description = ""
     for d in instDescr:
@@ -75,31 +79,51 @@ def insertArtworkInDict(instance, dict, identify, instDescr):
                 word = getLemma(word)
 
                 # Inserisco la parola in dict e/o aggiorno il conteggio della frequenza
-                if arttwork not in dict:
-                    dict[arttwork] = {}
+                if isinstance(arttwork, list):
+                    for i in range(len(arttwork)):
+                        if arttwork[i] not in dict:
+                            dict[arttwork[i]] = {}
 
-                if word not in dict[arttwork]:
-                    dict[arttwork][word] = 0
+                        if word not in dict[arttwork[i]]:
+                            dict[arttwork[i]][word] = 0
 
-                dict[arttwork][word] += 1
-                if verbo is not None:
-                     if verbo not in dict[arttwork]:
-                         dict[arttwork][verbo] = 0
+                        dict[arttwork[i]][word] += 1
+                        if verbo is not None:
+                            if verbo not in dict[arttwork[i]]:
+                                dict[arttwork[i]][verbo] = 0
 
-                     dict[arttwork][verbo] += 1
-                     verbo = None
+                            dict[arttwork[i]][verbo] += 1
+                            verbo = None
+
+                else:
+                    if arttwork not in dict:
+                        dict[arttwork] = {}
+
+                    if word not in dict[arttwork]:
+                        dict[arttwork][word] = 0
+
+                    dict[arttwork][word] += 1
+                    if verbo is not None:
+                        if verbo not in dict[arttwork]:
+                            dict[arttwork][verbo] = 0
+
+                        dict[arttwork][verbo] += 1
+                        verbo = None
 
 
-def compute_word_weights(dict, artworks_output):
-    for artwork in dict:
+def compute_word_weights(data, artworks_output, top_n = 14):
+    for artwork in data:
+        top_words = dict(
+            sorted(data[artwork].items(), key=lambda kv: kv[1], reverse=True)[:top_n]
+        )
         # conto le parole totali dell'artwork
-        totWords = sum(dict[artwork].values())
+        totWords = sum(top_words.values())
 
         # Calcolo min e max delle medie
         minFreq = 1
         maxFreq = 0
-        for word in dict[artwork]:
-            freq = dict[artwork][word] / totWords
+        for count in top_words.values():
+            freq = count / totWords
             minFreq = min(minFreq, freq)
             maxFreq = max(maxFreq, freq)
 
@@ -108,7 +132,7 @@ def compute_word_weights(dict, artworks_output):
         rangeScore = MAX_SCORE - MIN_SCORE
         lines = []
 
-        for word, count in sorted(dict[artwork].items(), key=lambda kv: kv[1], reverse=True):
+        for word, count in top_words.items():
             freq = count / totWords
 
             score = MAX_SCORE
@@ -119,14 +143,19 @@ def compute_word_weights(dict, artworks_output):
 
         artworks_output[artwork] = lines
 
-def writeWordInFile(file, word, value):
-    spaces = 20 - len(word) + 1
-    stri = word + ":"
-    for idx in range(spaces):
-        stri = stri + " "
+def writeInFile(file_name, instance):
 
-    stri = stri + str(value)
-    file.write(stri + "\n")
+    file_path = os.path.join(OUTPUT_DIR, file_name)
+
+    with open(file_path, "w", encoding="utf-8") as file:
+        for word, value in instance:
+            spaces = 20 - len(word) + 1
+            stri = word + ":"
+            for idx in range(spaces):
+                stri = stri + " "
+
+            stri = stri + str(value)
+            file.write(stri + "\n")
 
 
 #####################################################
@@ -166,11 +195,11 @@ chars_not_allowed_in_filename = ['\\', '/', ':', '*', '?', '"', '<', '>', '|']
 
 tagger = treetaggerwrapper.TreeTagger(TAGLANG=language)
 
-filename = cfg.jsonDescrFile
-
-path = cfg.outPath
 encoding = "utf-8"
 MIN_SCORE = 0.6
 MAX_SCORE = 0.9
 
+BASE_DIR = os.path.dirname(__file__)
+OUTPUT_DIR = os.path.join(BASE_DIR, 'output')
 
+os.makedirs(OUTPUT_DIR, exist_ok=True)
