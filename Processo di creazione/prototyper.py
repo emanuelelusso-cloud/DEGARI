@@ -10,7 +10,7 @@ import string
 import treetaggerwrapper
 import json
 import os
-import prototyper_config as cfg
+from json_field import *
 
 
 #####################################################
@@ -130,7 +130,7 @@ def compute_word_weights(data, artworks_output, top_n = 14):
 
         rangeFreq = maxFreq - minFreq
         rangeScore = MAX_SCORE - MIN_SCORE
-        lines = []
+        lines = {}
 
         for word, count in top_words.items():
             freq = count / totWords
@@ -139,7 +139,7 @@ def compute_word_weights(data, artworks_output, top_n = 14):
             if rangeFreq > 0:
                 score = MIN_SCORE + (rangeScore * (freq - minFreq) / rangeFreq)
 
-            lines.append((word, score))
+            lines[word] = score
 
         artworks_output[artwork] = lines
 
@@ -147,8 +147,10 @@ def writeInFile(file_name, instance):
 
     file_path = os.path.join(OUTPUT_DIR, file_name)
 
-    with open(file_path, "w", encoding="utf-8") as file:
-        for word, value in instance:
+    record = {"id": file_name}
+
+    with open(file_path, "w", encoding="utf-8")as file, open(os.path.join(OUTPUT_DIR, '01_prototipi_resume.jsonl'), "a", encoding="utf-8") as resume:
+        for word, value in instance.items():
             spaces = 20 - len(word) + 1
             stri = word + ":"
             for idx in range(spaces):
@@ -157,6 +159,25 @@ def writeInFile(file_name, instance):
             stri = stri + str(value)
             file.write(stri + "\n")
 
+            record[word] = value
+
+        resume.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
+
+def load_file(filename, dict, config):
+    # carica tutte le istanze
+    with open(filename, "r", encoding="utf-8") as file:
+        instances = json.loads(file.read())
+
+    # lista delle chiavi dei record
+    keys = list(instances[0].keys())
+
+    descriptions, config["identify"]  = acquire_json_fild(keys)
+
+    # per ogni record salvo le parole e il numero di volte che si ripete
+    for instance in instances:
+        insertArtworkInDict(instance, dict, config["identify"], descriptions)
 
 #####################################################
 #####################################################
@@ -200,6 +221,6 @@ MIN_SCORE = 0.6
 MAX_SCORE = 0.9
 
 BASE_DIR = os.path.dirname(__file__)
-OUTPUT_DIR = os.path.join(BASE_DIR, 'output')
+OUTPUT_DIR = os.path.join(BASE_DIR, 'typical')
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)

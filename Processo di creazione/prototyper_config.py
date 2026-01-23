@@ -13,7 +13,7 @@ instanceID = "ID"
 # list of instance description attributes in json description file
 instanceDescr = ["Description"]
 
-# output folder path
+# prototipi folder path
 outPath = "raiplay_prova/"
 
 
@@ -29,7 +29,7 @@ instanceID = "titolo"
 # list of instance description attributes in json description file
 instanceDescr = ["descrizione", "testo"]
 
-# output folder path
+# prototipi folder path
 outPath = "arsmeteo_for_cocos/"
 """
 
@@ -45,7 +45,7 @@ instanceID = "opera"
 # list of instance description attributes in json description file
 instanceDescr = ["evento", "storia", "sensazione", "oggetti"]
 
-# output folder path
+# prototipi folder path
 outPath = "spice_for_cocos/"
 """
 
@@ -61,6 +61,6 @@ instanceID = "programma"
 # list of instance description attributes in json description file
 instanceDescr = ["description", "descrProgramma"]
 
-# output folder path
+# prototipi folder path
 outPath = "raiplay_for_cocos/"
 """

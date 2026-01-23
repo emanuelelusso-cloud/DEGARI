@@ -1,7 +1,17 @@
 import os
 import glob
 
-folder = "output"
+prototipi = "prototipi"
+typical = "typical"
 
-for f in glob.glob(os.path.join(folder, "*")):
-    os.remove(f)
+def  clear_prototipi():
+    for f in glob.glob(os.path.join(prototipi, "*")):
+        os.remove(f)
+
+def clear_properties():
+    for f in glob.glob(os.path.join(typical, "*")):
+        os.remove(f)
+
+if __name__ == "__main__":
+    clear_prototipi()
+    clear_properties()
