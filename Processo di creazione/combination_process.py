@@ -81,6 +81,8 @@ def run_recommender():
 
                 except ValueError as e:
                     print(e)
+        else:
+            print("non sono presenti file nella cartella typical")
 
     keys_list = list(artworks_output.keys())
 
@@ -120,7 +122,7 @@ def run_recommender():
             prop_list.append(tuple([word, '1']))
 
         # Calcolo graduatoria nuova categoria
-        elaboraGraduatoria(prop_list)
+        elaboraGraduatoria(prop_list, artworks_output)
 
 
 
