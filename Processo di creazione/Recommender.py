@@ -27,31 +27,30 @@ def elaboraGraduatoria(prop_list, resume_properties, not_prop_list=[]):
     graduatoria = {}
     lista_istanze = []
     chars_not_allowed_in_filename = ['\\', '/', ':', '*', '?', '"', '<', '>', '|']
-    instance_id = "id"
 
     sum = 0
 
     # Apertura json contenente le descrizioni delle opere
     # Calcolo graduatoria
-    for instance in resume_properties:
+    for instance_id, instance in resume_properties.items():
         sum = sum + 1
         for char in chars_not_allowed_in_filename:
-            instance[instance_id] = instance[instance_id].replace(char, "")
-        instance[instance_id] = instance[instance_id].replace("'", "_")
-        if instance[instance_id] not in graduatoria:
-            graduatoria[instance[instance_id]] = 0
+            instance_id = instance_id.replace(char, "")
+        instance_id = instance_id.replace("'", "_")
+        if instance_id not in graduatoria:
+            graduatoria[instance_id] = 0
 
             for prop in prop_list:
                 prop_name = str(prop[0])
 
                 if prop_name in instance:
-                    graduatoria[instance[instance_id]] += 0.1
+                    graduatoria[instance_id] += 0.1
 
                     score = round(float(instance[prop_name]), 2)
-                    graduatoria[instance[instance_id]] += score
+                    graduatoria[instance_id] += score
 
     # Scorrimento istanze
-    for instance in resume_properties:
+    for instance_id, instance in resume_properties.items():
 
         # interseco per trovare quali parole sono presenti in prop_list e nell'istanza
         instance_keys = set(instance.keys())
@@ -67,10 +66,10 @@ def elaboraGraduatoria(prop_list, resume_properties, not_prop_list=[]):
 
         # Un'istanza è considerata se contiene almeno il 30% delle proprietà della lista
         if int(len(matches)) >= int(len(prop_list) * 30 / 100):
-            lista_istanze.append([instance[instance_id],
+            lista_istanze.append([instance_id,
                                       "\n\t\\-> matches: " + str(matches)])
         elif int(len(matches)) == 0:
-            graduatoria[instance[instance_id]] = 0
+            graduatoria[instance_id] = 0
 
     # Graduatoria risultato
     i = 0

@@ -83,7 +83,10 @@ def run_recommender():
                     print(e)
         else:
             print("non sono presenti file nella cartella typical")
-
+    for i, key in enumerate(artworks_output):
+        if i == 10:
+            break
+        print(f"{key}: {artworks_output[key]}")
     keys_list = list(artworks_output.keys())
 
     for i, key in enumerate(keys_list[:10]):
@@ -145,16 +148,14 @@ if __name__ == '__main__':
                 sys.exit(0)
             case 1:
                 run_prototyper()
-                print('\n0: exit\n2: sistema di raccomandazione\n3: combinazione di concetti')
+                print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti')
                 scelta = int(input("\ncontinuare con quale opzione\n"))
-                if scelta == 1:
-                    scelta = 4
+
             case 2:
                 run_recommender()
-                print('\n0: exit\n1: creazione dei prototipi\n3: combinazione di concetti')
+                print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti')
                 scelta = int(input("\ncontinuare con quale opzione\n"))
-                if scelta == 2:
-                    scelta = 4
+
             case _:
                 print("\nscelta non valida\n")
                 sys.exit(0)
