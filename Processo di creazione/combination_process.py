@@ -83,40 +83,42 @@ def run_recommender():
                     print(e)
         else:
             print("non sono presenti file nella cartella typical")
-    for i, key in enumerate(artworks_output):
-        if i == 10:
-            break
-        print(f"{key}: {artworks_output[key]}")
-    keys_list = list(artworks_output.keys())
 
-    for i, key in enumerate(keys_list[:10]):
-        print(f"{i}:  {key}: {artworks_output[key]}")
 
-    print("\nScegli una delle seguenti opzioni:")
-    print("a) Inserisci due numeri separati da virgola delle opzioni consigliate (es: 1,2)")
-    print("b) Inserisci due nomi di file .txt presenti in 'typical' separati da virgola")
-    print("c) Inserisci una o più parole per la ricerca separandole con virgola")
+    category = None
+    files = glob.glob('prototipi/*')
+
+    if len(files) > 0:
+        for i, f in enumerate(files[:10]):
+            print(f"{i}: {f}")
+
+        print("\nScegli una delle seguenti opzioni:")
+        print("a) Inserisci un numero tra le opzioni consigliate")
+        print("b) Inserisci un nome di un file presente in 'prototipi'")
+        print("c) Inserisci una o più parole per la ricerca separandole con virgola")
+    else:
+        print("Inserisci una o più parole per la ricerca separandole con virgola")
 
     scelta = input("")
 
     valori = [v.strip() for v in scelta.split(",") if v.strip()]
 
-    if len(valori) == 2 and all(v.isdigit() for v in valori):
-        op1 = int(valori[0])
-        op2 = int(valori[1])
+    if len(valori) == 1 and all(v.isdigit() for v in valori):
+        op = int(valori[0])
 
-        if op1 < len(keys_list) and op2 < len(keys_list):
+        if op < len(files):
+            category = files[op].split("\\")[-1]
+            print("hai scelto: ", category)
+        else:
+            print("opzione non valida")
+            return
 
-            print("hai scelto: ")
-            print(f"{op1}: {keys_list[op1]}: {artworks_output[keys_list[op1]]}")
-            print(f"{op2}: {keys_list[op2]}: {artworks_output[keys_list[op2]]}")
+    elif len(valori) == 1 and os.path.isfile(os.path.join("prototipi", valori[0])):
+        category = valori[0]
+
+        print("hai scelto il file: ", category)
 
 
-
-    elif len(valori) == 2 and all(os.path.isfile(os.path.join("typical", v)) for v in valori):
-        file1, file2 = valori
-
-        print("hai scelto i file: ", file1, file2)
 
     else:
         print("hai scelto le parole: ", [v for v in valori])
@@ -124,12 +126,29 @@ def run_recommender():
         for word in valori:
             prop_list.append(tuple([word, '1']))
 
-        # Calcolo graduatoria nuova categoria
         elaboraGraduatoria(prop_list, artworks_output)
+        return
 
+    f = ReadAttributes(os.path.join("prototipi", category))
+    r = [str(s) for s in f.result.split(',')]
 
+    prop_list = []
+    not_prop_list = []
+    for p in f.attrs:
+        if str(p).find('-') == -1:
+            prop_list.append(p)
+        else:
+            not_prop_list.append(p[0].replace("-", "").strip())
 
+    i = 0
+    for p in f.tipical_attrs:
+        if r[i].strip() == "'1'":
+            prop_list.append(p)
+        i += 1
+    print(prop_list)
+    print(not_prop_list)
 
+    elaboraGraduatoria(prop_list, artworks_output, not_prop_list, category)
 
 
 config = {

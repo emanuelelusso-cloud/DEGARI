@@ -21,7 +21,7 @@ def contains_value(lista, w):
 
 
 # Calcola la graduatoria e riclassifica tutte le istanze offrendo la raccomandazione
-def elaboraGraduatoria(prop_list, resume_properties, not_prop_list=[]):
+def elaboraGraduatoria(prop_list, resume_properties, not_prop_list=[], category = None):
     print("\nRecommended artworks:\n\n")
 
     graduatoria = {}
@@ -62,13 +62,14 @@ def elaboraGraduatoria(prop_list, resume_properties, not_prop_list=[]):
         for prop in not_prop_list:
             if str(prop) in instance:
                 matches = []
+                graduatoria[instance_id] = 0
                 break
 
         # Un'istanza è considerata se contiene almeno il 30% delle proprietà della lista
         if int(len(matches)) >= int(len(prop_list) * 30 / 100):
             lista_istanze.append([instance_id,
                                       "\n\t\\-> matches: " + str(matches)])
-        elif int(len(matches)) == 0:
+        else:
             graduatoria[instance_id] = 0
 
     # Graduatoria risultato
@@ -80,11 +81,13 @@ def elaboraGraduatoria(prop_list, resume_properties, not_prop_list=[]):
         print(artwork + "-" + str(score))
 
         for istanza in lista_istanze:
-            if contains_word(istanza[0], artwork):
+            if istanza[0] == artwork:
                 i += 1
                 print("\t" + istanza[0] + istanza[1] + "\n")
+
                 f = open("recommendations.tsv", "a", encoding="utf-8", errors="replace")
-                f.write(istanza[0].replace("\t", " ") + "\t" + category + "\n")
+                if category is not None:
+                    f.write(istanza[0].replace("\t", " ") + "\t" + category + "\n")
                 f.close()
     if i == 0:
         print("No recommendable contents for this category.")
@@ -92,7 +95,8 @@ def elaboraGraduatoria(prop_list, resume_properties, not_prop_list=[]):
         perc = (100 * i) / sum
         print("Classified " + str(i) + " of " + str(sum) + " contents (" + str(perc) + "%)")
         f = open("resume.tsv", "a", encoding="utf-8", errors="replace")
-        f.write(category.replace("\t", " ") + "\t" + str(i) + "\n")
+        if category is not None:
+            f.write(category.replace("\t", " ") + "\t" + str(i) + "\n")
         f.close()
 
 
