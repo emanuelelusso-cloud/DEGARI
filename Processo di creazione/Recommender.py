@@ -51,6 +51,9 @@ def elaboraGraduatoria(prop_list, resume_properties, not_prop_list=[], category 
 
     # Scorrimento istanze
     for instance_id, instance in resume_properties.items():
+        for char in chars_not_allowed_in_filename:
+            instance_id = instance_id.replace(char, "")
+        instance_id = instance_id.replace("'", "_")
 
         # interseco per trovare quali parole sono presenti in prop_list e nell'istanza
         instance_keys = set(instance.keys())

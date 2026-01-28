@@ -1,5 +1,8 @@
+import glob
 import json
+import os
 import sys
+from typing import Dict, Any
 
 
 def acquire_json_fild(keys):
@@ -42,3 +45,38 @@ def acquire_json_fild(keys):
         sys.exit(0)
 
     return descriptions, key_id
+
+
+def create_artworks(artworks):
+    files = glob.glob('typical/*')
+    resume = os.path.join('typical', '01_prototipi_resume.jsonl')
+
+    if resume in files:
+        with open(resume, "r", encoding="utf-8") as file:
+            for line in file:
+                data = json.loads(line)
+                artwork_id = data.pop("id")
+                artworks[artwork_id] = data
+
+    elif len(files) > 0:
+        for f in files:
+            try:
+                lines = {}
+                record: Dict[str, Any] = {"id": os.path.basename(f)}
+
+                with open(f, "r", encoding="utf-8") as file, open(resume, "a", encoding="utf-8") as resume_file:
+                    for line in file:
+                        if ":" not in line:
+                            continue
+
+                        word, value = line.split(":", 1)
+                        lines[word.strip()] = float(value.strip())
+                        record[word.strip()] = float(value.strip())
+
+                    artworks[os.path.basename(f)] = lines
+                    resume_file.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+            except ValueError as e:
+                print(e)
+    else:
+        print("non sono presenti file nella cartella typical")
