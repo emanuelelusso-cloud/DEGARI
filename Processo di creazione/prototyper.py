@@ -4,13 +4,13 @@
 # Per ogni artwork (es. quadro/video/serie tv) vengono analizzate tutte le istanze (es. episodi di una serie)
 #       (es. il dipinto della Gioconda è l'unica istanza dell'artwork "La Gioconda")
 
-from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import string
 import treetaggerwrapper
 import json
 import os
-from json_field import *
+from lib.json_field import *
 
 
 #####################################################
@@ -145,11 +145,12 @@ def compute_word_weights(data, artworks_output, top_n = 14):
 
 def writeInFile(file_name, instance):
 
-    file_path = os.path.join(OUTPUT_DIR, file_name)
+    typical_path = os.path.join("typical", file_name)
+    rigid_path = os.path.join("rigid", file_name)
 
     record = {"id": file_name}
 
-    with open(file_path, "w", encoding="utf-8")as file, open(os.path.join(OUTPUT_DIR, '01_prototipi_resume.jsonl'), "a", encoding="utf-8") as resume:
+    with open(typical_path, "w", encoding="utf-8")as file, open(rigid_path, "w", encoding="utf-8"), open(os.path.join(OUTPUT_DIR, '01_prototipi_resume.jsonl'), "a", encoding="utf-8") as resume:
         for word, value in instance.items():
             spaces = 20 - len(word) + 1
             stri = word + ":"

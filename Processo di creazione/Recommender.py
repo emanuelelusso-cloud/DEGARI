@@ -1,11 +1,6 @@
 # Classificatore che restituisce tutte le istanze ordinate in base ad una graduatoria calcolata
 # che rientrano nel nuovo genere fornito in input
-import glob
-import sys
-import os
-import json
-from json_field import *
-from DataFromInput import *
+from lib.json_field import *
 
 
 # Controlla se una parola(w) e' contenuta in una stringa(s)

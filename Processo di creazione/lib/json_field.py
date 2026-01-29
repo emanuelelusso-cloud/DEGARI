@@ -49,7 +49,7 @@ def acquire_json_fild(keys):
 
 def create_artworks(artworks):
     files = glob.glob('typical/*')
-    resume = os.path.join('typical', '01_prototipi_resume.jsonl')
+    resume = os.path.join('../typical', '01_prototipi_resume.jsonl')
 
     if resume in files:
         with open(resume, "r", encoding="utf-8") as file:
