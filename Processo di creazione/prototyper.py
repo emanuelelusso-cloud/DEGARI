@@ -3,6 +3,7 @@
 #
 # Per ogni artwork (es. quadro/video/serie tv) vengono analizzate tutte le istanze (es. episodi di una serie)
 #       (es. il dipinto della Gioconda è l'unica istanza dell'artwork "La Gioconda")
+import math
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -111,8 +112,9 @@ def insertArtworkInDict(instance, dict, identify, instDescr):
                         verbo = None
 
 
-def compute_word_weights(data, artworks_output, top_n = 14):
+def compute_word_weights(data, artworks_output, max_attr = 14):
     for artwork in data:
+        top_n = min(max_attr, len(data[artwork].items()))
         top_words = dict(
             sorted(data[artwork].items(), key=lambda kv: kv[1], reverse=True)[:top_n]
         )
@@ -143,14 +145,16 @@ def compute_word_weights(data, artworks_output, top_n = 14):
 
         artworks_output[artwork] = lines
 
-def writeInFile(file_name, instance):
+def writeInFile(file_name, instance, folder = "typical"):
 
-    typical_path = os.path.join("typical", file_name)
-    rigid_path = os.path.join("rigid", file_name)
+    typical_path = os.path.join(folder, file_name)
+    if folder == "typical":
+        rigid_path = os.path.join("rigid", file_name)
+        open(rigid_path, "w", encoding="utf-8").close()
 
     record = {"id": file_name}
 
-    with open(typical_path, "w", encoding="utf-8")as file, open(rigid_path, "w", encoding="utf-8"), open(os.path.join(OUTPUT_DIR, '01_prototipi_resume.jsonl'), "a", encoding="utf-8") as resume:
+    with open(typical_path, "w", encoding="utf-8")as file, open(os.path.join(folder, '01_prototipi_resume.jsonl'), "a", encoding="utf-8") as resume:
         for word, value in instance.items():
             spaces = 20 - len(word) + 1
             stri = word + ":"

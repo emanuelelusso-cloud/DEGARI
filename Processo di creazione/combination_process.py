@@ -1,9 +1,5 @@
 import ast
-import glob
 import os.path
-import sys
-from typing import Any, Dict
-import math
 
 from lib.DataFromInput import *
 from prototyper import *
@@ -12,9 +8,12 @@ from Recommender import *
 from cocos import *
 from cocos_preprocessing import *
 
-def run_prototyper():
+def run_prototyper(folder = "typical"):
 
-    clear_properties()
+    if folder != "typical":
+        os.makedirs(folder, exist_ok=True)
+    else:
+        clear_properties()
 
     files = glob.glob('file_json/*.json')
 
@@ -28,18 +27,20 @@ def run_prototyper():
         for i, f in enumerate(files):
             print(f"{i}: {f}")
 
-        try:
-            scelta = int(input('\nscegli il numero del file\n'))
+        scelta = input('\nscegli il numero del file\n')
 
-            if 0 <= scelta < len(files):
-                load_file(files[scelta], dict, config)
+        if scelta.isdigit():
+            op = int(scelta)
+
+            if 0 <= op < len(files):
+                load_file(files[op], dict, config)
                 compute_word_weights(dict, artworks_output)
 
             else:
                 print("Numero fuori range!")
                 sys.exit(0)
 
-        except ValueError:
+        else:
             print("Devi inserire un numero valido")
             sys.exit(0)
 
@@ -48,14 +49,14 @@ def run_prototyper():
         sys.exit(0)
 
     for artwork in artworks_output:
-        writeInFile(artwork, artworks_output[artwork])
+        writeInFile(artwork, artworks_output[artwork], folder)
 
-    print("\nFile creati in typical\n")
+    print("\nFile creati in: \n" + folder)
 
 
-def run_recommender():
+def run_recommender(folder = "typical"):
     if not artworks_output:
-        create_artworks(artworks_output)
+        create_artworks(artworks_output, folder)
 
 
     category = None
@@ -138,8 +139,9 @@ def run_cocos():
 
         print("\na) scegli il numero corrispondente a due opzioni elencate da combinare, separate da virgola")
         print("b) scrivi il nome di due file presenti in typical, separati da virgola")
-        print("c) scrivi il nome di un file presente in prototipi\n")
-        scelta = input("si può inserire il numero di attributi massimo che si vogliono tenere, separato da una virgola (es: file_di_prova,7)(es: file1,file2,7)")
+        print("c) scrivi il nome di un file presente in prototipi")
+        print("d) scrivi 'combine_all' per combinare tutti i file presenti in typical")
+        scelta = input("si può inserire il numero di attributi massimo che si vogliono tenere, separato da una virgola (es: file_di_prova,7)(es: file1,file2,7)\n")
 
         valori = [v.strip() for v in scelta.split(",") if v.strip()]
 
@@ -152,8 +154,9 @@ def run_cocos():
             print(f"{i}: {key}: {artworks_output[key]}")
 
         print("\na) scegli il numero corrispondente a due opzioni elencate da combinare, separate da virgola")
-        print("b) scrivi il nome di due file presenti in typical, separati da virgola\n")
-        scelta = input("si può inserire il numero di attributi massimo che si vogliono tenere, separato da una virgola (es: file1,file2,7)")
+        print("b) scrivi il nome di due file presenti in typical, separati da virgola")
+        print("c) scrivi 'combine_all' per combinare tutti i file presenti in typical")
+        scelta = input("si può inserire il numero di attributi massimo che si vogliono tenere, separato da una virgola (es: file1,file2,7)\n")
 
         valori = [v.strip() for v in scelta.split(",") if v.strip()]
 
@@ -166,7 +169,7 @@ def run_cocos():
 
         print("a) Scegli un numero relativo ai file elencati")
         print("b) Scrivi il nome di un file presente in prototipi")
-        scelta = input("si può inserire il numero di attributi massimo che si vogliono tenere, separato da una virgola (es: file_di_prova,3)")
+        scelta = input("si può inserire il numero di attributi massimo che si vogliono tenere, separato da una virgola (es: file_di_prova,3)\n")
 
         valori = scelta.split(",")
         max_attrs = math.inf
@@ -192,7 +195,17 @@ def run_cocos():
 
 def run_cocos_preprocessing(valori, keys_list):
     max_attrs = math.inf
-    if len(valori) >= 2 and all(v.isdigit() for v in valori):
+    if valori[0] == "combine_all":
+        if len(valori) >= 2 and valori[1].isdigit():
+            max_attrs = int(valori[1])
+
+        for op1 in artworks_output.keys():
+            for op2 in artworks_output.keys():
+                if op1 != op2:
+                    write_cocos_file(op1, op2)
+                    cocos(os.path.join("prototipi", f'{op1}_{op2}.txt'), max_attrs)
+
+    elif len(valori) >= 2 and all(v.isdigit() for v in valori):
         op1 = int(valori[0])
         op2 = int(valori[1])
 
@@ -240,26 +253,57 @@ artworks_output = {}
 
 if __name__ == '__main__':
     print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti')
-    scelta = int(input("scegli il numero relativo all'opzione\n"))
+    scelta = input("scegli il numero relativo all'opzione\n")
+
+    valori = scelta.split(",")
+    if valori[0].isdigit():
+        op = int(valori[0])
+    else:
+        print("Scelta non valida\n")
+        sys.exit(0)
 
     while True:
-        match scelta:
+        match op:
             case 0:
                 sys.exit(0)
             case 1:
-                run_prototyper()
+                if len(valori) >= 2:
+                    run_prototyper(valori[1])
+                else:
+                    run_prototyper()
                 print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti')
-                scelta = int(input("continuare con quale opzione?\n"))
+                scelta = input("continuare con quale opzione?\n")
+                valori = scelta.split(",")
+                if valori[0].isdigit():
+                    op = int(valori[0])
+                else:
+                    print("Scelta non valida\n")
+                    sys.exit(0)
 
             case 2:
-                run_recommender()
+                if len(valori) >= 2:
+                    run_recommender(valori[1])
+                else:
+                    run_recommender()
                 print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti')
-                scelta = int(input("continuare con quale opzione?\n"))
+                scelta = input("continuare con quale opzione?\n")
+                valori = scelta.split(",")
+                if valori[0].isdigit():
+                    op = int(valori[0])
+                else:
+                    print("Scelta non valida\n")
+                    sys.exit(0)
 
             case 3:
                 run_cocos()
                 print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti')
-                scelta = int(input("continuare con quale opzione?\n"))
+                scelta = input("continuare con quale opzione?\n")
+                valori = scelta.split(",")
+                if valori[0].isdigit():
+                    op = int(valori[0])
+                else:
+                    print("Scelta non valida\n")
+                    sys.exit(0)
 
             case _:
                 print("\nscelta non valida\n")
