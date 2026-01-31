@@ -151,6 +151,9 @@ def writeInFile(file_name, instance, folder = "typical"):
     if folder == "typical":
         rigid_path = os.path.join("rigid", file_name)
         open(rigid_path, "w", encoding="utf-8").close()
+    else:
+        rigid_path = os.path.join(folder + "_rigid", file_name)
+        open(rigid_path, "w", encoding="utf-8").close()
 
     record = {"id": file_name}
 

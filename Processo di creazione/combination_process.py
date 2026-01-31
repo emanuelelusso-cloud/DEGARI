@@ -10,8 +10,15 @@ from cocos_preprocessing import *
 
 def run_prototyper(folder = "typical"):
 
+    if folder != config["old_folder"]:
+        config["old_folder"] = folder
+
+    dict.clear()
+    artworks_output.clear()
+
     if folder != "typical":
         os.makedirs(folder, exist_ok=True)
+        os.makedirs(folder + "_rigid", exist_ok=True)
     else:
         clear_properties()
 
@@ -55,7 +62,10 @@ def run_prototyper(folder = "typical"):
 
 
 def run_recommender(folder = "typical"):
-    if not artworks_output:
+
+    if folder != config["old_folder"] or not artworks_output:
+        artworks_output.clear()
+        config["old_folder"] = folder
         create_artworks(artworks_output, folder)
 
 
@@ -124,9 +134,12 @@ def run_recommender(folder = "typical"):
     elaboraGraduatoria(prop_list, artworks_output, not_prop_list, category)
 
 
-def run_cocos():
-    if not artworks_output:
-        create_artworks(artworks_output)
+def run_cocos(folder = "typical"):
+
+    if config["old_folder"] != folder or not artworks_output:
+        artworks_output.clear()
+        config["old_folder"] = folder
+        create_artworks(artworks_output, folder)
 
     files_prot = glob.glob('prototipi/*')
 
@@ -145,7 +158,7 @@ def run_cocos():
 
         valori = [v.strip() for v in scelta.split(",") if v.strip()]
 
-        run_cocos_preprocessing(valori, keys_list)
+        run_cocos_preprocessing(valori, keys_list, folder)
 
     elif len(artworks_output) > 0:
         keys_list = list(artworks_output.keys())
@@ -160,7 +173,7 @@ def run_cocos():
 
         valori = [v.strip() for v in scelta.split(",") if v.strip()]
 
-        run_cocos_preprocessing(valori, keys_list)
+        run_cocos_preprocessing(valori, keys_list, folder)
 
     elif len(files_prot) > 0:
 
@@ -193,7 +206,7 @@ def run_cocos():
         print("non sono presenti concetti da combinare\n")
 
 
-def run_cocos_preprocessing(valori, keys_list):
+def run_cocos_preprocessing(valori, keys_list, folder):
     max_attrs = math.inf
     if valori[0] == "combine_all":
         if len(valori) >= 2 and valori[1].isdigit():
@@ -202,7 +215,7 @@ def run_cocos_preprocessing(valori, keys_list):
         for op1 in artworks_output.keys():
             for op2 in artworks_output.keys():
                 if op1 != op2:
-                    write_cocos_file(op1, op2)
+                    write_cocos_file(op1, artworks_output[op1], op2, artworks_output[op2], folder)
                     cocos(os.path.join("prototipi", f'{op1}_{op2}.txt'), max_attrs)
 
     elif len(valori) >= 2 and all(v.isdigit() for v in valori):
@@ -215,7 +228,7 @@ def run_cocos_preprocessing(valori, keys_list):
 
             print("hai scelto i file: ", keys_list[op1], "and", keys_list[op2])
 
-            write_cocos_file(keys_list[op1], keys_list[op2])
+            write_cocos_file(keys_list[op1], artworks_output[keys_list[op1]], keys_list[op2], artworks_output[keys_list[op2]], folder)
             cocos(os.path.join("prototipi", f'{keys_list[op1]}_{keys_list[op2]}.txt'), max_attrs)
         else:
             print("Opzione non valida")
@@ -228,7 +241,7 @@ def run_cocos_preprocessing(valori, keys_list):
         if len(valori) >= 3 and valori[2].isdigit():
             max_attrs = int(valori[2])
 
-        write_cocos_file(op1, op2)
+        write_cocos_file(op1, artworks_output[op1], op2, artworks_output[op2], folder)
         cocos(os.path.join("prototipi", f'{op1}_{op2}.txt'), max_attrs)
 
 
@@ -244,15 +257,15 @@ def run_cocos_preprocessing(valori, keys_list):
 
 
 
-
 config = {
-    "identify": None
+    "identify": None,
+    "old_folder": "typical"
 }
 dict = {}
 artworks_output = {}
 
 if __name__ == '__main__':
-    print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti')
+    print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti\n(si può scegliere un folder separando le opzioni con ",". default typical)')
     scelta = input("scegli il numero relativo all'opzione\n")
 
     valori = scelta.split(",")
@@ -271,7 +284,7 @@ if __name__ == '__main__':
                     run_prototyper(valori[1])
                 else:
                     run_prototyper()
-                print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti')
+                print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti\n(si può scegliere un folder separando le opzioni con ",". default typical)')
                 scelta = input("continuare con quale opzione?\n")
                 valori = scelta.split(",")
                 if valori[0].isdigit():
@@ -282,10 +295,14 @@ if __name__ == '__main__':
 
             case 2:
                 if len(valori) >= 2:
-                    run_recommender(valori[1])
+                    if os.path.isdir(valori[1]):
+                        run_recommender(valori[1])
+                    else:
+                        print("directory non esistente:", valori[1])
                 else:
                     run_recommender()
-                print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti')
+
+                print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti\n(si può scegliere un folder separando le opzioni con ",". default typical)')
                 scelta = input("continuare con quale opzione?\n")
                 valori = scelta.split(",")
                 if valori[0].isdigit():
@@ -295,8 +312,15 @@ if __name__ == '__main__':
                     sys.exit(0)
 
             case 3:
-                run_cocos()
-                print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti')
+                if len(valori) >= 2:
+                    if os.path.isdir(valori[1]):
+                        run_cocos(valori[1])
+                    else:
+                        print("directory non esistente:", valori[1])
+                else:
+                    run_cocos()
+
+                print('\n0: exit\n1: creazione dei prototipi\n2: sistema di raccomandazione\n3: combinazione di concetti\n(si può scegliere un folder separando le opzioni con ",". default typical)')
                 scelta = input("continuare con quale opzione?\n")
                 valori = scelta.split(",")
                 if valori[0].isdigit():

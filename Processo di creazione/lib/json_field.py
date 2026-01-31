@@ -48,6 +48,7 @@ def acquire_json_fild(keys):
 
 
 def create_artworks(artworks, path = "typical"):
+
     files = glob.glob(f'{path}/*')
     resume = os.path.join(path, '01_prototipi_resume.jsonl')
 
@@ -78,5 +79,9 @@ def create_artworks(artworks, path = "typical"):
 
             except ValueError as e:
                 print(e)
+                sys.exit(0)
     else:
         print("non sono presenti file nella cartella", path)
+        return False
+
+    return True
