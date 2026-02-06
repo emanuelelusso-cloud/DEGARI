@@ -66,7 +66,8 @@ def run_recommender(folder = "typical"):
     if folder != config["old_folder"] or not artworks_output:
         artworks_output.clear()
         config["old_folder"] = folder
-        create_artworks(artworks_output, folder)
+        if not create_artworks(artworks_output, folder):
+            return
 
 
     category = None
@@ -139,7 +140,8 @@ def run_cocos(folder = "typical"):
     if config["old_folder"] != folder or not artworks_output:
         artworks_output.clear()
         config["old_folder"] = folder
-        create_artworks(artworks_output, folder)
+        if not create_artworks(artworks_output, folder):
+            return
 
     files_prot = glob.glob('prototipi/*')
 

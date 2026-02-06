@@ -146,7 +146,6 @@ def compute_word_weights(data, artworks_output, max_attr = 14):
         artworks_output[artwork] = lines
 
 def writeInFile(file_name, instance, folder = "typical"):
-
     typical_path = os.path.join(folder, file_name)
     if folder == "typical":
         rigid_path = os.path.join("rigid", file_name)
@@ -183,6 +182,7 @@ def load_file(filename, dict, config):
 
     descriptions, config["identify"]  = acquire_json_fild(keys)
 
+    print("\nCreazione delle proprietà\n")
     # per ogni record salvo le parole e il numero di volte che si ripete
     for instance in instances:
         insertArtworkInDict(instance, dict, config["identify"], descriptions)
@@ -220,7 +220,7 @@ congiuntions = ["a", "a meno che", "acciocché", "adunque", "affinché", "allora
 punctuation = list(string.punctuation) + ["...", "``"]
 stop_words = stopwords.words('italian')  # le stop_words sono prese dalla libreria nltk (sono parole da non considerare)
 remove_words = prepositions + articles + congiuntions + punctuation + stop_words  # tutte le parole da evitare
-chars_not_allowed_in_filename = ['\\', '/', ':', '*', '?', '"', '<', '>', '|']
+chars_not_allowed_in_filename = ['\\', '/', ':', '*', '?', '"', '<', '>', '|', '.']
 
 tagger = treetaggerwrapper.TreeTagger(TAGLANG=language)
 

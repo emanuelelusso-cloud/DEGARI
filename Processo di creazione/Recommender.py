@@ -85,7 +85,7 @@ def elaboraGraduatoria(prop_list, resume_properties, not_prop_list=[], category 
 
                 f = open("recommendations.tsv", "a", encoding="utf-8", errors="replace")
                 if category is not None:
-                    f.write(istanza[0].replace("\t", " ") + "\t" + category + "\n")
+                    f.write(istanza[0].replace("\t", " ") + "\t" + category + "\t" + istanza[1].replace("\n\t\\-> matches:", "") + "\n")
                 f.close()
     if i == 0:
         print("No recommendable contents for this category.")
