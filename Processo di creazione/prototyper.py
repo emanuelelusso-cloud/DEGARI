@@ -59,7 +59,8 @@ def insertArtworkInDict(instance, dict, identify, instDescr):
 
     description = ""
     for d in instDescr:
-        description += " " + str(instance[d])
+        if instance[d]:
+            description += " " + str(instance[d])
     word_tokens = word_tokenize(description)
     verbo = None
 
@@ -72,7 +73,7 @@ def insertArtworkInDict(instance, dict, identify, instDescr):
 
         word = word.lower()
 
-        if (len(word) > 1) and (word not in remove_words) and (not isNumber(word)) and (not isAdverb(word)):
+        if (len(word) > 1) and not all(char in string.punctuation for char in word) and (word not in remove_words) and (not isNumber(word)) and (not isAdverb(word)):
 
             if isVerb(word):
                 verbo = getLemma(word)
