@@ -44,6 +44,27 @@ def isAdjective(word):
 def isAdverb(word):
     return getTypeOfWord(word) == "ADV"
 
+def addIndict(word, dict, artwork):
+    if isinstance(artwork, list):
+        for i in range(len(artwork)):
+            if artwork[i] not in dict:
+                dict[artwork[i]] = {}
+
+            if word not in dict[artwork[i]]:
+                dict[artwork[i]][word] = 0
+
+            dict[artwork[i]][word] += 1
+
+
+    else:
+        if artwork not in dict:
+            dict[artwork] = {}
+
+        if word not in dict[artwork]:
+            dict[artwork][word] = 0
+
+        dict[artwork][word] += 1
+
 
 def insertArtworkInDict(instance, dict, identify, instDescr):
     arttwork = instance[identify]
@@ -62,55 +83,36 @@ def insertArtworkInDict(instance, dict, identify, instDescr):
         if instance[d]:
             description += " " + str(instance[d])
     word_tokens = word_tokenize(description)
-    verbo = None
+    servili = None
 
     # Inserisco le parole in dict
     for word in word_tokens:
-
-
         if "'" in word:  # se la parola e' ad esempio "d'autore", prendo solo "autore"
             word = word.split("'")[1]
 
         word = word.lower()
 
-        if (len(word) > 1) and not all(char in string.punctuation for char in word) and (word not in remove_words) and (not isNumber(word)) and (not isAdverb(word)):
+        if servili is not None:
+            if not isVerb(word):
+                addIndict(servili, dict, arttwork)
 
-            if isVerb(word):
-                verbo = getLemma(word)
+            servili = None
+
+
+        if (len(word) > 1) and not all(char in string.punctuation for char in word) and (word not in remove_words) and (not isNumber(word)) and (not isAdverb(word)):
+            if getLemma(word) in verbi_servili:
+                servili = getLemma(word)
             else:
                 word = getLemma(word)
 
                 # Inserisco la parola in dict e/o aggiorno il conteggio della frequenza
-                if isinstance(arttwork, list):
-                    for i in range(len(arttwork)):
-                        if arttwork[i] not in dict:
-                            dict[arttwork[i]] = {}
+                addIndict(word, dict, arttwork)
 
-                        if word not in dict[arttwork[i]]:
-                            dict[arttwork[i]][word] = 0
+    if servili is not None:
+        addIndict(servili, dict, arttwork)
 
-                        dict[arttwork[i]][word] += 1
-                        if verbo is not None:
-                            if verbo not in dict[arttwork[i]]:
-                                dict[arttwork[i]][verbo] = 0
 
-                            dict[arttwork[i]][verbo] += 1
-                            verbo = None
 
-                else:
-                    if arttwork not in dict:
-                        dict[arttwork] = {}
-
-                    if word not in dict[arttwork]:
-                        dict[arttwork][word] = 0
-
-                    dict[arttwork][word] += 1
-                    if verbo is not None:
-                        if verbo not in dict[arttwork]:
-                            dict[arttwork][verbo] = 0
-
-                        dict[arttwork][verbo] += 1
-                        verbo = None
 
 
 def compute_word_weights(data, artworks_output, max_attr = 14):
@@ -221,6 +223,7 @@ congiuntions = ["a", "a meno che", "acciocché", "adunque", "affinché", "allora
 punctuation = list(string.punctuation) + ["...", "``"]
 stop_words = stopwords.words('italian')  # le stop_words sono prese dalla libreria nltk (sono parole da non considerare)
 remove_words = prepositions + articles + congiuntions + punctuation + stop_words  # tutte le parole da evitare
+verbi_servili = ["dovere", "potere", "volere"]
 chars_not_allowed_in_filename = ['\\', '/', ':', '*', '?', '"', '<', '>', '|', '.']
 
 tagger = treetaggerwrapper.TreeTagger(TAGLANG=language)
