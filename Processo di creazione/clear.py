@@ -7,7 +7,7 @@ rigid = "rigid"
 
 def  clear_prototipi():
     for f in glob.glob(os.path.join(prototipi, "*")):
-        if f.split("\\")[1] != "file_di_prova" and f.split("\\")[1] != "prova28attr.txt":
+        if f.split("\\")[1] != "file_di_prova" and f.split("\\")[1] != "prova28attr.txt" and f.split("\\")[1] != "prova":
             os.remove(f)
 
 def clear_properties():

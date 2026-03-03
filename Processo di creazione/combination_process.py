@@ -107,7 +107,7 @@ def run_recommender(folder = "typical"):
         print("hai scelto le parole: ", [v for v in valori])
         prop_list = []
         for word in valori:
-            prop_list.append(tuple([word, '1']))
+            prop_list.append(tuple([word, 1]))
 
         elaboraGraduatoria(prop_list, artworks_output)
         return

@@ -1,0 +1,20 @@
+#Title composizione
+Title : prova
+
+#Concetto Principale
+Head Concept Name : testa
+
+#Concetto Modificatore
+Modifier Concept Name : coda
+
+head, a
+head, b
+
+modifier, -e
+
+
+T(modifier), c, 0.9
+T(head), d, 0.9
+
+
+Scenario : [1, 1, 0.001128295687985529]

@@ -16,7 +16,7 @@ def contains_value(lista, w):
 
 
 # Calcola la graduatoria e riclassifica tutte le istanze offrendo la raccomandazione
-def elaboraGraduatoria(prop_list, resume_properties, not_prop_list=[], category = None):
+def elaboraGraduatoria(prop_list, resume_properties, not_prop_list=[], category = None, perc = 20):
     print("\nRecommended artworks:\n\n")
 
     graduatoria = {}
@@ -41,7 +41,7 @@ def elaboraGraduatoria(prop_list, resume_properties, not_prop_list=[], category 
                 if prop_name in instance:
                     graduatoria[instance_id] += 0.1
 
-                    score = round(float(instance[prop_name]), 2)
+                    score = round(round(float(instance[prop_name]), 2) * round(float(prop[1]), 2), 3)
                     graduatoria[instance_id] += score
 
     # Scorrimento istanze
@@ -64,7 +64,7 @@ def elaboraGraduatoria(prop_list, resume_properties, not_prop_list=[], category 
                 break
 
         # Un'istanza è considerata se contiene almeno il 30% delle proprietà della lista
-        if int(len(matches)) >= int(len(prop_list) * 30 / 100):
+        if int(len(matches)) >= int(len(prop_list) * perc / 100):
             lista_istanze.append([instance_id,
                                       "\n\t\\-> matches: " + str(matches)])
         else:

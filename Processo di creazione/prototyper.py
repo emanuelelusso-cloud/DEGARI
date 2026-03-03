@@ -88,7 +88,11 @@ def insertArtworkInDict(instance, dict, identify, instDescr):
     # Inserisco le parole in dict
     for word in word_tokens:
         if "'" in word:  # se la parola e' ad esempio "d'autore", prendo solo "autore"
-            word = word.split("'")[1]
+            parts = word.split("'")
+            # controllo effettivamente che dopo l'apostrofo ci sia una parola, nel caso sia "po'" word rimane "po'", questo per evitare word = ""
+            if len(parts) > 1 and parts[1]:
+                word = parts[1]
+
 
         word = word.lower()
 
@@ -115,7 +119,7 @@ def insertArtworkInDict(instance, dict, identify, instDescr):
 
 
 
-def compute_word_weights(data, artworks_output, max_attr = 14):
+def compute_word_weights(data, artworks_output, max_attr = math.inf):
     for artwork in data:
         top_n = min(max_attr, len(data[artwork].items()))
         top_words = dict(
