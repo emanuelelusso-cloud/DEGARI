@@ -31,10 +31,11 @@ def run_prototyper(folder = "typical"):
 
     elif len(files) > 1:
         # in caso di più file, ti fa scegliere un file
+        print("-" * 100)
         for i, f in enumerate(files):
             print(f"{i}: {f}")
 
-        scelta = input('\nscegli il numero del file\n')
+        scelta = input('Scegli il numero del file:\n')
 
         if scelta.isdigit():
             op = int(scelta)
@@ -74,6 +75,7 @@ def run_recommender(folder = "typical"):
     files = glob.glob('prototipi/*')
 
     if len(files) > 0:
+        print("-" * 100)
         for i, f in enumerate(files[:10]):
             print(f"{i}: {f}")
 
@@ -148,14 +150,14 @@ def run_cocos(folder = "typical"):
     if len(artworks_output) > 0 and len(files_prot) > 0:
 
         keys_list = list(artworks_output.keys())
-
+        print("-" * 100)
         for i, key in enumerate(keys_list[:10]):
             print(f"{i}: {key}: {artworks_output[key]}")
 
         print("\na) scegli il numero corrispondente a due opzioni elencate da combinare, separate da virgola")
-        print("b) scrivi il nome di due file presenti in typical, separati da virgola")
+        print("b) scrivi il nome di due file presenti in "+folder+", separati da virgola")
         print("c) scrivi il nome di un file presente in prototipi")
-        print("d) scrivi 'combine_all' per combinare tutti i file presenti in typical")
+        print("d) scrivi 'combine_all' per combinare tutti i file presenti in",folder)
         scelta = input("si può inserire il numero di attributi massimo che si vogliono tenere, separato da una virgola (es: file_di_prova,7)(es: file1,file2,7)\n")
 
         valori = [v.strip() for v in scelta.split(",") if v.strip()]
@@ -164,13 +166,13 @@ def run_cocos(folder = "typical"):
 
     elif len(artworks_output) > 0:
         keys_list = list(artworks_output.keys())
-
+        print("-" * 100)
         for i, key in enumerate(keys_list[:10]):
             print(f"{i}: {key}: {artworks_output[key]}")
 
         print("\na) scegli il numero corrispondente a due opzioni elencate da combinare, separate da virgola")
-        print("b) scrivi il nome di due file presenti in typical, separati da virgola")
-        print("c) scrivi 'combine_all' per combinare tutti i file presenti in typical")
+        print("b) scrivi il nome di due file presenti in "+folder+", separati da virgola")
+        print("c) scrivi 'combine_all' per combinare tutti i file presenti in",folder)
         scelta = input("si può inserire il numero di attributi massimo che si vogliono tenere, separato da una virgola (es: file1,file2,7)\n")
 
         valori = [v.strip() for v in scelta.split(",") if v.strip()]
@@ -178,7 +180,7 @@ def run_cocos(folder = "typical"):
         run_cocos_preprocessing(valori, keys_list, folder)
 
     elif len(files_prot) > 0:
-
+        print("-" * 100)
         for i, f in enumerate(files_prot[:10]):
             print(f"{i}: {f}")
 

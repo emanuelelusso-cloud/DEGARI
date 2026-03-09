@@ -124,3 +124,27 @@ Generated file will contain all the properties of prototypes of the two starting
 	- if no folder is specified, the default is "../prototipi"
 	- this execution also updates "recommendations.tsv" and "resume.tsv", and
 		at the end prints the overall number of artworks involved by the recommendations
+
+------------------------------------------------------------------------------------------------
+
+## Module 5 - Unify process
+- Description: generation of prototypes, combination process and Recommender system.
+- Folder: ./Processo di creazione
+- Input
+  - generation of prototype
+    - JSON description file (folder: ./Processo di creazione/file_json)
+  - combination process
+    - prototypes files from generation of prototypes (default folder: ./Processo di creazione/typical)
+  - Recommender system
+    - prototypes files from generation of prototypes (default folder: ./Processo di creazione/typical)
+    - prototypes files from combination process (folder: ./Processo di creazione/prototipi)
+- Output
+  - generation of prototypes
+    - the program create the prototypes file in ./Processo di creazione/typical or in a specified folder
+    - create a JSON resume file containing all the prototypes
+  - combination process
+    - create a combined prototypes in ./Processo di creazione/prototipi
+  - recommender system
+    - prints the recommendations and their explanations
+    - if it's run on a set of prototypes, it also generates 2 output files (in .tsv format): recommendations.tsv and resume.tsv
+- To run: python3 combination_process.py

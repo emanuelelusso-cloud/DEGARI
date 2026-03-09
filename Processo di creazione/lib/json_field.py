@@ -10,11 +10,12 @@ def acquire_json_fild(keys):
     descriptions = None
     key_id = None
     # selezione della chiave da utilizzare come valore univoco di ogni record
+    print("-" * 100)
     for i, f in enumerate(keys):
         print(f"{i}: {f}")
 
     try:
-        scelta = int(input('\nscegli il numero del valore che identifica ogni record\n'))
+        scelta = int(input('Scegli il numero del valore che identifica ogni record:\n'))
 
         if 0 <= scelta < len(keys):
             key_id = keys[scelta]
@@ -27,11 +28,12 @@ def acquire_json_fild(keys):
         sys.exit(0)
 
     # selezione delle chiavi che identificano le parole da parserizzare
+    print("-" * 100)
     for i, f in enumerate(keys):
         print(f"{i}: {f}")
 
     try:
-        scelta = input('\nscegli il/i numero/i del valore che identifica la descrizione dei record separati da ","\n')
+        scelta = input('Scegli il/i numero/i del valore che identifica la descrizione dei record separati da ",":\n')
         indici = [int(x.strip()) for x in scelta.split(",") if x.isdigit()]
 
         if any(i < 0 or i >= len(keys) for i in indici):
