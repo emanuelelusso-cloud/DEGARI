@@ -238,8 +238,8 @@ def run_cocos_preprocessing(valori, keys_list, folder):
             print("Opzione non valida")
             return
 
-    elif len(valori) >= 2 and all(val in artworks_output for val in valori):
-        op1, op2 = valori
+    elif len(valori) >= 2 and all(val in artworks_output for val in valori[0:2]):
+        op1, op2 = valori[0:2]
 
         print("hai scelto il file: ", op1, "and", op2)
         if len(valori) >= 3 and valori[2].isdigit():
